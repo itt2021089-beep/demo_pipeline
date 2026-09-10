@@ -131,27 +131,3 @@ EVALUATION_STATUS = [
         "verified": False,
     },
 ]
-
-HISTORICAL_RESULTS_NOTE = (
-    "Historical experiment results are reported separately from this live demo. "
-    "The progress presentation contains earlier Stage 1 and Stage 2 accuracy "
-    "figures, but neither can be attributed to the checkpoints running here: "
-    "the Stage 1 figure came from an earlier experiment on a data split later "
-    "found to leak, and the Stage 2 figure cannot be linked to this .h5 file, "
-    "which carries no run identifier and has four outputs while the "
-    "presentation describes that experiment as three-species. Those numbers are "
-    "therefore not displayed as results of this demo."
-)
-
-STAGE2_MAPPING_WARNING = (
-    "Stage 2 class mapping is currently user-confirmed and has not yet been "
-    "independently verified against the original training notebook."
-)
-
-DATASET_STATUS_NOTE = (
-    "Stage 1 was trained and evaluated on a leakage-free re-split of the "
-    "project's binary dataset (5,013 distinct source photographs recovered from "
-    "8,499 files; audit in results/stage1/dataset_audit.md). The dataset used to "
-    "train the Stage 2 checkpoint is not identified by the model file, so no "
-    "dataset claim is made for it."
-)

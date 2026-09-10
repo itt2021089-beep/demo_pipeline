@@ -1,0 +1,16 @@
+image,stage1_true,stage1_pred,stage1_conf,stage1_correct,stage2_executed,stage2_index,stage2_true,stage2_pred,stage2_conf,stage2_correct,final_class
+sample_images/Aedes/Aedes_0790_orig.jpg,Larva,Larva,0.9988125562667847,1,1,0,Aedes,Aedes,0.8651413917541504,1,Aedes
+sample_images/Aedes/Aedes_0711_orig.jpg,Larva,Larva,0.9913204312324524,1,1,0,Aedes,Aedes,0.9876362681388855,1,Aedes
+sample_images/Aedes/Aedes_0800_orig.jpg,Larva,Larva,0.9977713823318481,1,1,0,Aedes,Aedes,0.9873676300048828,1,Aedes
+sample_images/Anopheles/Anopheles_0109_orig.jpg,Larva,Larva,0.9955306649208069,1,1,1,Anopheles,Anopheles,0.9999936819076538,1,Anopheles
+sample_images/Anopheles/Anopheles_0107_orig.jpg,Larva,Larva,0.9999375343322754,1,1,1,Anopheles,Anopheles,0.9999114274978638,1,Anopheles
+sample_images/Anopheles/Anopheles_0112_orig.jpg,Larva,Larva,0.9997157454490662,1,1,1,Anopheles,Anopheles,0.9998774528503418,1,Anopheles
+sample_images/Culex/Culex_0221_orig.jpg,Larva,Larva,0.9996850490570068,1,1,2,Culex,Culex,0.9994139671325684,1,Culex
+sample_images/Culex/Culex_0214_orig.jpg,Larva,Larva,0.9998226761817932,1,1,2,Culex,Culex,0.9718538522720337,1,Culex
+sample_images/Culex/Culex_0229_orig.jpg,Larva,Larva,0.9999105930328369,1,1,2,Culex,Culex,0.9999239444732666,1,Culex
+sample_images/Non_larvae/Non_larvae_0415_orig.jpg,Non_larva,Non_larva,0.9996892213821411,1,0,,Non_larvae,,,,Non_larva
+sample_images/Non_larvae/Non_larvae_0401_orig.jpg,Non_larva,Non_larva,0.999563992023468,1,0,,Non_larvae,,,,Non_larva
+sample_images/Non_larvae/Non_larvae_0435_orig.jpg,Non_larva,Non_larva,0.9991596937179565,1,0,,Non_larvae,,,,Non_larva
+sample_images/_stage1_non_larva/non_larvae_510.jpg,Non_larva,Non_larva,0.9999110698699951,1,0,,,,,,Non_larva
+sample_images/_stage1_non_larva/non_larvae_496.jpg,Non_larva,Non_larva,0.9288622736930847,1,0,,,,,,Non_larva
+sample_images/_stage1_non_larva/non_larvae_625.jpg,Non_larva,Non_larva,0.9989657402038574,1,0,,,,,,Non_larva
