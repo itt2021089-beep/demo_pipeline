@@ -1,0 +1,219 @@
+{
+  "package": "safezone_pipeline",
+  "built": "2026-09-10T11:43:53",
+  "project": "Safe Zone AI \u2014 ICT 4808 Group 08",
+  "file_count": 42,
+  "total_bytes": 114308638,
+  "files": [
+    {
+      "path": "README_FIRST.md",
+      "bytes": 4403,
+      "sha256": "580b53cdf282c1ac8a0c690ecf8e16291d2e87f6f4f74f3969268bb611129f21"
+    },
+    {
+      "path": "preprocessing.py",
+      "bytes": 7472,
+      "sha256": "786069fba4647cf13a4e47ff303736874dd0fd028565e062265b4f4339a6eebb"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 354,
+      "sha256": "4eaff886952015b81d65a16f99ad077ba65ab5651be35226336f3b6f3f9cda98"
+    },
+    {
+      "path": "run_demo.bat",
+      "bytes": 181,
+      "sha256": "9a3f906c4cc3a70fec0f2ae035f542cc7bd9b606fd648d9e674e058dff536fb6"
+    },
+    {
+      "path": "run_demo.sh",
+      "bytes": 170,
+      "sha256": "f004e993c13a9d64382325ff379d4a8fbf5f02da9c3245ca28f1634844c39670"
+    },
+    {
+      "path": "verify_package.py",
+      "bytes": 1059,
+      "sha256": "57110badd1e5eaf2250edd450410af6179cfa86af0dd0356c1a02d67de1ce09d"
+    },
+    {
+      "path": "demo/README.md",
+      "bytes": 4781,
+      "sha256": "c7a9d993249793810b37817ba02bc0c0af8b9cfd49b0b04e1e25557c82cbe5af"
+    },
+    {
+      "path": "demo/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "demo/app.py",
+      "bytes": 17271,
+      "sha256": "8c6139fc11ea14ede7dc63a3af0d27105a9b7689ed7e185a166e182b1d3d5ed6"
+    },
+    {
+      "path": "demo/config.py",
+      "bytes": 7634,
+      "sha256": "8365a1321c83df453916d4cf00b794a78056b85b87f6eba8adc19153ef3da852"
+    },
+    {
+      "path": "demo/inference.py",
+      "bytes": 6571,
+      "sha256": "2e44aad5652c7d9851382a129b38e041adeb8f5ecb579e0a8d0ecb642cbfcad5"
+    },
+    {
+      "path": "demo/preprocessing.py",
+      "bytes": 2016,
+      "sha256": "b39756c50ff95f0579dcc05111952b2540c4e1a43fefafb740946562dd794861"
+    },
+    {
+      "path": "demo/test_pipeline.py",
+      "bytes": 8225,
+      "sha256": "baff2341e12d8d2c2a1af66c89e42e8715432d6dbfe23300b773301ad72d574c"
+    },
+    {
+      "path": "demo_models/PACKAGE_INFO.json",
+      "bytes": 2635,
+      "sha256": "06dde19df2c49db091476b4486eb03888e4d8bab63acdb2a71069da0b19ed127"
+    },
+    {
+      "path": "demo_models/stage1_resnet50/best_model.pth",
+      "bytes": 94367102,
+      "sha256": "04bd6283e9de273370c5b5c5719910137d4cb38a9001dc480e3c56bbce515370"
+    },
+    {
+      "path": "demo_models/stage1_resnet50/class_mapping.json",
+      "bytes": 41,
+      "sha256": "c8770e8cf4a84218c734708d7bd2231dddfdca3ec7785d02e2d90697cc2160fd"
+    },
+    {
+      "path": "demo_models/stage1_resnet50/model_config.json",
+      "bytes": 1373,
+      "sha256": "40dec3565734fcd3fd8c8d1b55740ae42158382b6802e2d03fec5a95c046f094"
+    },
+    {
+      "path": "demo_models/stage2_efficientnet/best_tuning_run.h5",
+      "bytes": 18907992,
+      "sha256": "eeec89e0369aab9337420f4cd4db12854a3ab8402330ad5305868ab704dc7bc1"
+    },
+    {
+      "path": "sample_images/Aedes/Aedes_0711_orig.jpg",
+      "bytes": 49751,
+      "sha256": "1893d8a2ea2a27186403a97f7f21dd9437ae7806dc72530b766a8ac1df7442ad"
+    },
+    {
+      "path": "sample_images/Aedes/Aedes_0790_orig.jpg",
+      "bytes": 43469,
+      "sha256": "072cbf0eb539deaf16fbcca9d7b9278ccbb107b8275361318fa4024567ff2f46"
+    },
+    {
+      "path": "sample_images/Aedes/Aedes_0800_orig.jpg",
+      "bytes": 16002,
+      "sha256": "8eaf7a7a3fc40cafa65aa7c997d1b95e2df38645822f3076c92c1af3b3fcd685"
+    },
+    {
+      "path": "sample_images/Anopheles/Anopheles_0107_orig.jpg",
+      "bytes": 25877,
+      "sha256": "9f10acf01b1e4019aa5c5b133e0b0c8e02e587cf443957c404c02425870f8ffb"
+    },
+    {
+      "path": "sample_images/Anopheles/Anopheles_0109_orig.jpg",
+      "bytes": 22106,
+      "sha256": "c71f2b13e50efac8067ad9671a77d4690be61b3dd8b7faca062bc93e9bc1f338"
+    },
+    {
+      "path": "sample_images/Anopheles/Anopheles_0112_orig.jpg",
+      "bytes": 27234,
+      "sha256": "bb7c5dd1c1878360c87f4ec6a3df4e39af4a8c1a34cdffee01b607b19144b6b7"
+    },
+    {
+      "path": "sample_images/Culex/Culex_0214_orig.jpg",
+      "bytes": 45129,
+      "sha256": "2d375f7b0e35757171ee4fec386920cda5efd92d83a9b0d8ebac92d56a553f50"
+    },
+    {
+      "path": "sample_images/Culex/Culex_0221_orig.jpg",
+      "bytes": 60710,
+      "sha256": "670a352d24f6a59019d4bdc8186b51298e9c9dde5f12ec3048ae333ee12dd9c3"
+    },
+    {
+      "path": "sample_images/Culex/Culex_0229_orig.jpg",
+      "bytes": 40163,
+      "sha256": "747728578baab53d8db10d85c23658c5b8a1a92d1c231fa9c9824476df6c1b10"
+    },
+    {
+      "path": "sample_images/Non_larvae/Non_larvae_0401_orig.jpg",
+      "bytes": 178363,
+      "sha256": "da3448800e9124fb9cc7942914e947bc37f93a7f958464786cc1486876d6431e"
+    },
+    {
+      "path": "sample_images/Non_larvae/Non_larvae_0415_orig.jpg",
+      "bytes": 140672,
+      "sha256": "ed331763202117218bbb38e8be3a7be344556a917b280ed8a517a24b6dec366c"
+    },
+    {
+      "path": "sample_images/Non_larvae/Non_larvae_0435_orig.jpg",
+      "bytes": 88852,
+      "sha256": "caf686984c5c080b01e06f86c8c7a6938c1f6dde701c2cefa91b4078628cd315"
+    },
+    {
+      "path": "sample_images/_stage1_non_larva/non_larvae_496.jpg",
+      "bytes": 145179,
+      "sha256": "aa6e69193e0d45e953a87d3116675172a52e4378e977bb2945a1e09bbe13f375"
+    },
+    {
+      "path": "sample_images/_stage1_non_larva/non_larvae_510.jpg",
+      "bytes": 6473,
+      "sha256": "d4737b6fb7d8a23592f01a3d505985b14a5dab54aac9f1969a2c7a3d7423a610"
+    },
+    {
+      "path": "sample_images/_stage1_non_larva/non_larvae_625.jpg",
+      "bytes": 9446,
+      "sha256": "5ce93b592e709eb20f904f6638fc1817f61cd97e8ca06a77ee0b526739b561ef"
+    },
+    {
+      "path": "stage1/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "stage1/dataset.py",
+      "bytes": 19395,
+      "sha256": "38dcbcf1777b04d234f1fd3b3fc7701d9eed55351e90f7134f245ed0ce9776e8"
+    },
+    {
+      "path": "stage1/demo_test.py",
+      "bytes": 6717,
+      "sha256": "fe24a16cc9d25c0c39577ac8ea2e1cfe63283b1000cc96caba3e9a67c92109fe"
+    },
+    {
+      "path": "stage1/inference.py",
+      "bytes": 7612,
+      "sha256": "f6bd2fb922f9ee462e9c9169556e9490897970d69328663c654965dbf6de3142"
+    },
+    {
+      "path": "stage1/model.py",
+      "bytes": 3148,
+      "sha256": "6e2ea53cfa01c68ebe2def9c31582eeb2a7d3882d3c925e5ee60f695673c7957"
+    },
+    {
+      "path": "stage1/package_demo.py",
+      "bytes": 7328,
+      "sha256": "6e28b9cfa109e1bc0b23294565693f98f0278ca38381f7e022c6ca047597281a"
+    },
+    {
+      "path": "stage1/train.py",
+      "bytes": 15763,
+      "sha256": "16724266c84011a059f4418ed62f0edcc4b2e4fd53f74a0ff22661f5f3088ecb"
+    },
+    {
+      "path": "stage2/__init__.py",
+      "bytes": 781,
+      "sha256": "a65a9cc9e953b7bfc2f02696a2bce45ddeb13972835efd304e06fe5c4c19b5db"
+    },
+    {
+      "path": "stage2/dedup.py",
+      "bytes": 9188,
+      "sha256": "f3aa4aac07d33b87eb8e00d8958021a3eeeed90b5d616bac1524c1e5a14b921a"
+    }
+  ]
+}

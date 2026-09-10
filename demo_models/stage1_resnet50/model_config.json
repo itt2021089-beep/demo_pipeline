@@ -1,0 +1,50 @@
+{
+  "stage": 1,
+  "task": "binary classification: Larva vs Non-larva",
+  "architecture": "ResNet50 (torchvision), ImageNet pretrained, fc replaced by Dropout + Linear(2048 -> 2)",
+  "framework": "pytorch",
+  "input_size": 224,
+  "input_layout": "NCHW, RGB",
+  "num_classes": 2,
+  "class_mapping": {
+    "0": "Larva",
+    "1": "Non_larva"
+  },
+  "source_folders": {
+    "0": "larvae",
+    "1": "non_larvae"
+  },
+  "preprocessing": {
+    "order": [
+      "gamma_correction",
+      "resize",
+      "to_tensor",
+      "imagenet_normalize"
+    ],
+    "gamma": 1.5,
+    "resize": [
+      224,
+      224
+    ],
+    "normalize_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "normalize_std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "note": "No random augmentation at inference. Identical to the validation/test transform used in training."
+  },
+  "training_run": "tuning/lr_1e-4",
+  "measured_test_metrics_this_model": {
+    "accuracy": 0.9991967871485944,
+    "macro_f1": 0.99919653626461,
+    "larva_recall": 1.0,
+    "non_larva_recall": 0.9983660130718954,
+    "n_test_images": 1245
+  },
+  "IMPORTANT": "These metrics belong to THIS locally trained model only. They are not the 99.88% figure quoted in the research presentation, which came from a different earlier experiment on a different (leaky) split."
+}

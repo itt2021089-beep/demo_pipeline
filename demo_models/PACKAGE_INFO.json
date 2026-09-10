@@ -1,0 +1,66 @@
+{
+  "files": {
+    "stage1_checkpoint": {
+      "source": "results/stage1/resnet50/tuning/lr_1e-4/best_model.pth",
+      "path": "demo_models/stage1_resnet50/best_model.pth",
+      "sha256": "04bd6283e9de273370c5b5c5719910137d4cb38a9001dc480e3c56bbce515370",
+      "bytes": 94367102
+    },
+    "stage1_class_mapping": {
+      "source": "results/stage1/resnet50/class_mapping.json",
+      "path": "demo_models/stage1_resnet50/class_mapping.json",
+      "sha256": "c8770e8cf4a84218c734708d7bd2231dddfdca3ec7785d02e2d90697cc2160fd",
+      "bytes": 41
+    },
+    "stage1_model_config": {
+      "path": "demo_models/stage1_resnet50/model_config.json",
+      "sha256": "40dec3565734fcd3fd8c8d1b55740ae42158382b6802e2d03fec5a95c046f094",
+      "bytes": 1373
+    },
+    "stage2_model": {
+      "source": "C:/Users/sahan/Downloads/best_tuning_run.h5",
+      "path": "demo_models/stage2_efficientnet/best_tuning_run.h5",
+      "sha256": "eeec89e0369aab9337420f4cd4db12854a3ab8402330ad5305868ab704dc7bc1",
+      "bytes": 18907992,
+      "modified": false,
+      "note": "Byte-for-byte copy, SHA-256 verified against the source. Not retrained and not modified."
+    }
+  },
+  "pipeline": {
+    "order": [
+      "input image",
+      "Stage 1 ResNet50 (binary)",
+      "if Larva -> Stage 2 EfficientNet-B0 (4-class)",
+      "final result"
+    ],
+    "gate_rule": "If Stage 1 predicts Non_larva, STOP. Do not run Stage 2. Display: 'Non-larva detected. Stage 2 was not executed.'",
+    "stage1_entrypoint": "from stage1.inference import predict_stage1",
+    "shared_input_size": 224,
+    "note": "Stage 1 and Stage 2 both take 224x224 RGB, so the demo can decode the image once. Stage 2 expects NHWC (Keras); Stage 1 expects NCHW (PyTorch) \u2014 the Stage 1 module handles its own preprocessing internally."
+  },
+  "provenance": {
+    "stage2": {
+      "framework": "keras 3.13.2 / tensorflow",
+      "architecture": "EfficientNet-B0 (Functional, 243 layers)",
+      "input_shape": [
+        224,
+        224,
+        3
+      ],
+      "output": "Dense(4, softmax)",
+      "classes_expected": [
+        "Aedes",
+        "Anopheles",
+        "Culex",
+        "Non_larvae"
+      ],
+      "note": "Class ORDER must be confirmed against the Stage 2 training code before wiring the demo \u2014 it is not recoverable from the .h5 weights alone."
+    },
+    "stage1": {
+      "trained_locally": true,
+      "dataset": "dataset_binary/ (re-split leakage-free; see results/stage1/dataset_audit.md)",
+      "checkpoint_selected_on": "validation macro F1",
+      "run": "tuning/lr_1e-4"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Pinned to the versions this pipeline was built and verified against.
+# Python 3.11 is recommended (3.11.9 used here). TensorFlow 2.21 does not
+# publish Windows wheels for 3.13+, so newer Python will fail to install.
+
+torch==2.5.1
+torchvision==0.20.1
+tensorflow==2.21.0
+streamlit==1.63.0
+pillow==12.2.0
+numpy==2.4.6
+opencv-python==4.10.0.84
