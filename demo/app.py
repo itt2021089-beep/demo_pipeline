@@ -31,7 +31,7 @@ st.set_page_config(page_title="Mosquito Larva Classification System",
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
-  .block-container { padding-top: 4.5rem; padding-bottom: 3rem; max-width: 1280px; }
+  .block-container { padding-top: 3.6rem; padding-bottom: 3rem; max-width: 1280px; }
 
   /* Header banner — painted background so the title stays high-contrast in
      both the light and the dark Streamlit theme. */
