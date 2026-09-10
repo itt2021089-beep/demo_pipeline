@@ -131,3 +131,9 @@ EVALUATION_STATUS = [
         "verified": False,
     },
 ]
+
+HISTORICAL_RESULTS_NOTE = ("")
+
+STAGE2_MAPPING_WARNING = ("")
+
+DATASET_STATUS_NOTE = ("")
