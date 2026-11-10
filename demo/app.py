@@ -225,7 +225,7 @@ if uploaded is None:
     for col, (t, s) in zip(c[::2], [
             ("Upload Image", "JPG / PNG"), ("Preprocessing", "resize · normalize"),
             ("Stage 1", "ResNet50"), ("Stage 2", "EfficientNet-B0"),
-            ("Final Prediction", "class + confidence")]):
+            ("Final Prediction", "class")]):
         with col:
             _node(t, s, "idle")
     for col in c[1::2]:
@@ -259,14 +259,13 @@ with rail:
     _node("Preprocessing", "resize · tensor · normalize", "done"); _arrow()
     _node("Stage 1 — ResNet50", "binary classifier", "done"); _arrow()
     _node(s1["class"].replace("_", "-").upper(),
-          f"{_pct(s1['confidence'])} confidence",
+          "larva detected" if s1["is_larva"] else "no larva detected",
           "done" if s1["is_larva"] else "stop")
     _arrow()
     if ran2:
         _node("Stage 2 — EfficientNet-B0", "species classifier", "done"); _arrow()
         _node("Species Classification", s2["class"], "done"); _arrow()
-        _node("Final Prediction", f"{result['final_class']} · "
-              f"{_pct(result['final_confidence'])}", "done")
+        _node("Final Prediction", s2["class"], "done")
     else:
         _node("Stage 2 — EfficientNet-B0", "not executed", "skip"); _arrow()
         _node("Species Classification", "skipped", "skip"); _arrow()
@@ -303,16 +302,11 @@ with right:
         st.markdown('<div class="card-h">Stage 1 — ResNet50 · '
                     '<span class="pill live">Live Prediction</span></div>',
                     unsafe_allow_html=True)
-        a, b = st.columns([1.05, 1])
-        with a:
-            st.markdown(f'<div class="verdict {"g" if s1["is_larva"] else "o"}">'
-                        f'{s1["class"].replace("_","-").upper()}</div>',
-                        unsafe_allow_html=True)
-            st.markdown(f'<div class="sub">Confidence <b>{_pct(s1["confidence"])}</b>'
-                        f' · {s1["inference_ms"]:.0f} ms</div>',
-                        unsafe_allow_html=True)
-        with b:
-            _probs(s1["probabilities"], s1["class"])
+        st.markdown(f'<div class="verdict {"g" if s1["is_larva"] else "o"}">'
+                    f'{s1["class"].replace("_","-").upper()}</div>',
+                    unsafe_allow_html=True)
+        st.markdown(f'<div class="sub">{s1["inference_ms"]:.0f} ms</div>',
+                    unsafe_allow_html=True)
 
     if not s1["is_larva"]:
         st.error("**Stage 2 not executed** — pipeline stopped because the image "
@@ -327,17 +321,10 @@ with right:
                         '<span class="pill live">Live Prediction</span> '
                         '<span class="pill warn">User-Confirmed Mapping</span></div>',
                         unsafe_allow_html=True)
-            a, b = st.columns([1.05, 1])
-            with a:
-                st.markdown(f'<div class="verdict g">{s2["class"]}</div>',
-                            unsafe_allow_html=True)
-                st.markdown(f'<div class="sub">Confidence '
-                            f'<b>{_pct(s2["confidence"])}</b>'
-                            f' · {s2["inference_ms"]:.0f} ms<br>'
-                            f'output index {s2["class_index"]}</div>',
-                            unsafe_allow_html=True)
-            with b:
-                _probs(s2["probabilities"], s2["class"])
+            st.markdown(f'<div class="verdict g">{s2["class"]}</div>',
+                        unsafe_allow_html=True)
+            st.markdown(f'<div class="sub">{s2["inference_ms"]:.0f} ms</div>',
+                        unsafe_allow_html=True)
     else:
         st.markdown('<div class="card muted" style="border-style:dashed">'
                     '<div class="card-h">Stage 2 — EfficientNet-B0 '
@@ -362,19 +349,22 @@ with right:
         f'&nbsp;&nbsp;<span class="pill {status_pill}">{status}</span></div>'
         f'</div>', unsafe_allow_html=True)
 
-    f1, f2 = st.columns(2)
-    f1.metric("Confidence", _pct(result["final_confidence"]))
-    f2.metric("Total inference time", f"{wall_ms:.0f} ms")
-
-    t1, t2 = st.columns(2)
-    t1.metric("Stage 1 time", f"{s1['inference_ms']:.0f} ms")
-    t2.metric("Stage 2 time", f"{s2['inference_ms']:.0f} ms" if ran2 else "not run")
+    f1, f2, f3 = st.columns(3)
+    f1.metric("Total inference time", f"{wall_ms:.0f} ms")
+    f2.metric("Stage 1 time", f"{s1['inference_ms']:.0f} ms")
+    f3.metric("Stage 2 time", f"{s2['inference_ms']:.0f} ms" if ran2 else "not run")
 
     st.caption("Times are model forward-pass durations; the total additionally "
                "includes image decoding and preprocessing.")
 
 with st.expander("Raw pipeline output (JSON)"):
-    st.json(result)
+    # Confidence values are deliberately not shown anywhere in the prototype.
+    def _no_conf(d):
+        if isinstance(d, dict):
+            return {k: _no_conf(v) for k, v in d.items()
+                    if "confidence" not in k and k != "probabilities"}
+        return d
+    st.json(_no_conf(result))
 
 st.markdown('<div class="hdr-rule" style="margin-top:2rem"></div>',
             unsafe_allow_html=True)
