@@ -24,13 +24,15 @@ from demo import inference as inf
 
 st.set_page_config(page_title="Mosquito Larva Classification System",
                    page_icon="🦟", layout="wide",
-                   initial_sidebar_state="expanded")
+                   initial_sidebar_state="collapsed")
 
 # ─────────────────────────────────────────────
 # Styling
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
+  [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"],
+  [data-testid="collapsedControl"] { display: none !important; }
   .block-container { padding-top: 3.6rem; padding-bottom: 3rem; max-width: 1280px; }
 
   /* Header banner — painted background so the title stays high-contrast in
@@ -160,54 +162,6 @@ st.markdown(
     '— ResNet50 → EfficientNet-B0</div>'
     '</div>', unsafe_allow_html=True)
 
-# ─────────────────────────────────────────────
-# Sidebar — research status
-# ─────────────────────────────────────────────
-with st.sidebar:
-    st.markdown("### Research Status")
-
-    st.markdown('<div class="sec-label">A · Current live demo</div>',
-                unsafe_allow_html=True)
-    for row in config.LIVE_DEMO_STATUS:
-        pill = "live" if row["status"] == "Live inference" else "info"
-        st.markdown(
-            f'<div style="margin-bottom:.55rem"><b style="font-size:.86rem">'
-            f'{row["stage"]}</b><br><span class="pill {pill}">{row["status"]}</span>'
-            f'<div class="meta" style="margin-top:.2rem">{row["detail"]}</div></div>',
-            unsafe_allow_html=True)
-
-    st.markdown('<div class="sec-label">B · Research results</div>',
-                unsafe_allow_html=True)
-    for e in config.EVALUATION_STATUS:
-        pill = "info" if e["verified"] else "grey"
-        label = "Historical Research Result" if e["verified"] else "Not evaluated here"
-        st.markdown(
-            f'<div style="margin-bottom:.55rem"><b style="font-size:.86rem">'
-            f'{e["model"]}</b><br><span class="pill {pill}">{label}</span>'
-            f'<div class="meta" style="margin-top:.2rem"><b>{e["result"]}</b><br>'
-            f'{e["context"]}<br><code style="font-size:.72rem">{e["source"]}</code>'
-            f'</div></div>', unsafe_allow_html=True)
-    st.info(config.HISTORICAL_RESULTS_NOTE, icon="ℹ️")
-
-    st.markdown('<div class="sec-label">C · Stage 2 class mapping</div>',
-                unsafe_allow_html=True)
-    st.warning(config.STAGE2_MAPPING_WARNING, icon="⚠️")
-    st.markdown(
-        '<span class="pill warn">User-Confirmed Mapping</span>'
-        f'<div class="meta" style="margin-top:.3rem">'
-        f'{ {i: c for i, c in enumerate(config.STAGE2_CLASSES)} }</div>',
-        unsafe_allow_html=True)
-    st.markdown(
-        '<div class="meta" style="margin-top:.5rem">Stage 1 mapping '
-        '<span class="pill info">Source-Verified</span><br>'
-        f'{ {i: c for i, c in enumerate(config.STAGE1_CLASSES)} } — derived from '
-        'the training dataset folder order.</div>', unsafe_allow_html=True)
-
-    st.markdown('<div class="sec-label">D · Dataset / evaluation</div>',
-                unsafe_allow_html=True)
-    st.markdown(f'<div class="meta">{config.DATASET_STATUS_NOTE}</div>',
-                unsafe_allow_html=True)
-
 _warm()
 
 # ─────────────────────────────────────────────
@@ -318,8 +272,7 @@ with right:
     if ran2:
         with st.container(border=True):
             st.markdown('<div class="card-h">Stage 2 — EfficientNet-B0 · '
-                        '<span class="pill live">Live Prediction</span> '
-                        '<span class="pill warn">User-Confirmed Mapping</span></div>',
+                        '<span class="pill live">Live Prediction</span></div>',
                         unsafe_allow_html=True)
             st.markdown(f'<div class="verdict g">{s2["class"]}</div>',
                         unsafe_allow_html=True)
@@ -354,21 +307,6 @@ with right:
     f2.metric("Stage 1 time", f"{s1['inference_ms']:.0f} ms")
     f3.metric("Stage 2 time", f"{s2['inference_ms']:.0f} ms" if ran2 else "not run")
 
-    st.caption("Times are model forward-pass durations; the total additionally "
-               "includes image decoding and preprocessing.")
-
-with st.expander("Raw pipeline output (JSON)"):
-    # Confidence values are deliberately not shown anywhere in the prototype.
-    def _no_conf(d):
-        if isinstance(d, dict):
-            return {k: _no_conf(v) for k, v in d.items()
-                    if "confidence" not in k and k != "probabilities"}
-        return d
-    st.json(_no_conf(result))
 
 st.markdown('<div class="hdr-rule" style="margin-top:2rem"></div>',
             unsafe_allow_html=True)
-st.caption("Live single-image demonstration. Predictions shown here are runtime "
-           "output and are not an evaluation of model generalization; see the "
-           "Research Status panel for what has and has not been formally "
-           "evaluated.")
